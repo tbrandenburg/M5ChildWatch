@@ -3,12 +3,16 @@
 #include "AppWatch.h"
 #include "AppAddress.h"
 #include "AppPedometer.h"
+#include "AppDices.h"
+#include "AppBattery.h"
 #include "PowerSaver.h"
 
 AppCtrl appCtrl = AppCtrl();
 
 AppWatch myWatch = AppWatch(&appCtrl);
 AppPedometer myPedometer = AppPedometer(&appCtrl);
+AppDices myDices = AppDices(&appCtrl);
+AppBattery myBattery = AppBattery(&appCtrl);
 AppAddress myAddress = AppAddress(&appCtrl);
 
 PowerSaver pwrSaver = PowerSaver();
@@ -20,6 +24,8 @@ void setup(){
   // Apps
   appCtrl.addApp(&myWatch);
   appCtrl.addApp(&myPedometer);
+  appCtrl.addApp(&myDices);
+  appCtrl.addApp(&myBattery);
   appCtrl.addApp(&myAddress);
 
   appCtrl.start();

@@ -18,6 +18,8 @@ class AppWatch : public App {
             M5.Lcd.fillScreen(BLACK);
             
             M5.Lcd.setTextSize(1);
+            M5.Lcd.setTextColor(WHITE, BLACK);
+
             M5.Lcd.setCursor(40, 0, 2);
             M5.Lcd.println("FELIX UHR :)");
         }

@@ -18,6 +18,8 @@ class AppAddress : public App {
             M5.Lcd.fillScreen(BLACK);
             
             M5.Lcd.setTextSize(1);
+            M5.Lcd.setTextColor(WHITE, BLACK);
+
             M5.Lcd.setCursor(0, 0, 2);
             M5.Lcd.println("Adresse:");
             M5.Lcd.println("Felix Brandenburg");
