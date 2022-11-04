@@ -6,9 +6,14 @@
 
 #include <M5StickC.h>
 
+#define ACC_LIMIT 1.0f
+
 class AppPedometer : public App {
     private:
         uint32_t steps = 0;
+        float oldAccX = 0.0f;
+        float oldAccY = 0.0f;
+        float oldAccZ = 0.0f;
     public:
         /* Inherit constructors */
         using App::App;
@@ -34,7 +39,8 @@ class AppPedometer : public App {
 
             M5.IMU.getAccelData(&accX,&accY,&accZ);
 
-            if (accX > 1.0 ||  accY > 1.0 ) {
+            // Only count if old accelerations were below limit
+            if ( ( this->oldAccX <= ACC_LIMIT && accX > ACC_LIMIT ) || ( this->oldAccY<= ACC_LIMIT && accY > ACC_LIMIT ) ) {
                 steps++;
             
                 M5.Lcd.fillScreen(WHITE);
@@ -46,9 +52,11 @@ class AppPedometer : public App {
                 M5.Lcd.setTextSize(2);
                 M5.Lcd.setCursor(5, 25);
                 M5.Lcd.printf("%d",steps);
-
-                delay(200);
             }
+
+            this->oldAccX = accX;
+            this->oldAccY = accY;
+            this->oldAccZ = accZ;
         }
 };
 

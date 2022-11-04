@@ -47,12 +47,6 @@ void loop() {
       pwrSaver.triggerActivity();
     }
 
-    // Go to deep sleep if button B was pressed
-    if(M5.BtnB.wasPressed()) {
-        // Power off ESP32
-        M5.Axp.DeepSleep(0);
-    }
-
     // Check if power saving can be entered
     pwrSaver.check();
 }
